@@ -9,8 +9,21 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  //metadataBase: new URL(process.env.NEXT_PUBLIC_ABSURL),
   title: "Classical Piano GPT",
   description: "A gpt style neural net trained on classical piano music",
+  openGraph: {
+    title: "Classical Piano GPT",
+    description: "A gpt style neural net trained on classical piano music",
+    //url: process.env.NEXT_PUBLIC_ABSURL,
+    siteName: "Classical Piano GPT",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    title: "Classical Piano GPT",
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({
