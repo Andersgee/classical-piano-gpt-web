@@ -28,11 +28,6 @@ export class AudioPlayer {
       fetchnote(i).then((buf) => this.audio.decodeAudioData(buf))
     );
     this.notes = await Promise.all(promises);
-
-    await fetchsequence(
-      "./sequences_tokenized/chpn-p10_format0-tokenized.b64url"
-    );
-
     this.ready = true;
   }
 
