@@ -1,5 +1,6 @@
 import { SAMPLES } from "./SAMPLES";
 import { uint8ArrayFromBase64url } from "./base64url";
+import { uint8ArrayFromTxt } from "./text";
 import { Tokenizer } from "./tokenizer";
 
 const tokenizer = new Tokenizer();
@@ -83,7 +84,8 @@ async function fetchnote(n: number) {
 async function fetchsequence(path: string) {
   const res = await fetch(path);
   const text = await res.text();
-  return uint8ArrayFromBase64url(text);
+  return uint8ArrayFromTxt(text);
+  //return uint8ArrayFromBase64url(text);
 }
 
 function int_to_note_index(int: number) {

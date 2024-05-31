@@ -1,6 +1,6 @@
 export const SAMPLES = [
-  "/sequences_tokenized/chpn-p10_format0-tokenized.b64url",
-  "/sequences_tokenized/chpn-p7_format0-tokenized.b64url",
+  //"/sequences_tokenized/chpn-p10_format0-tokenized.b64url",
+  //"/sequences_tokenized/chpn-p7_format0-tokenized.b64url",
   "/generated3/generated-at-iter-11000.txt",
   "/generated3/generated-at-iter-12000.txt",
   "/generated3/generated-at-iter-13000.txt",
