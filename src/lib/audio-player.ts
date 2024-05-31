@@ -1,3 +1,4 @@
+import { setIsPlayingIdx } from "#src/store/player";
 import { SAMPLES } from "./SAMPLES";
 import { uint8ArrayFromBase64url } from "./base64url";
 import { uint8ArrayFromTxt } from "./text";
@@ -32,21 +33,22 @@ export class AudioPlayer {
     this.ready = true;
   }
 
-  async play(sampleIndex: number) {
+  async play(idx: number) {
     this.stop();
-    if (!this.sequences[sampleIndex]) {
-      const v = await fetchsequence(SAMPLES[sampleIndex]);
-      this.sequences[sampleIndex] = tokenizer.decode(v);
+    if (!this.sequences[idx]) {
+      const v = await fetchsequence(`/generated3/${SAMPLES[idx]}`);
+      this.sequences[idx] = tokenizer.decode(v);
     }
 
     this.intervalId = setInterval(() => {
-      if (this.sequences[sampleIndex][this.step] > 0) {
-        let note = int_to_note_index(this.sequences[sampleIndex][this.step]);
+      if (this.sequences[idx][this.step] > 0) {
+        let note = int_to_note_index(this.sequences[idx][this.step]);
         //console.log("playing note n:", n);
         this.playnote(note, 0.5);
       }
       this.step += 1;
     }, 1000 / STEPS_PER_SECOND);
+    setIsPlayingIdx(idx);
   }
 
   stop() {
@@ -54,6 +56,7 @@ export class AudioPlayer {
       clearInterval(this.intervalId);
     }
     this.step = 0;
+    setIsPlayingIdx(null);
   }
 
   playnote(n: number, v: number) {
