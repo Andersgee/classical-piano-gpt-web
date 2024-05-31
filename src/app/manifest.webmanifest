@@ -1,0 +1,19 @@
+{
+  "name": "classical piano gpt",
+  "short_name": "classical piano gpt",
+  "description": "A gpt style neural net trained on classical piano music",
+  "display": "standalone",
+  "orientation": "any",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    { "src": "/icons/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icons/icon-512.png", "type": "image/png", "sizes": "512x512" },
+    {
+      "src": "/icons/icon-512-maskable.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ]
+}
