@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { AudioPlayer } from "#src/lib/audio-player";
+import { SAMPLES } from "#src/lib/SAMPLES";
 
 export function Samples() {
   const ref = useRef<AudioPlayer | null>(null);
@@ -24,8 +25,9 @@ export function Samples() {
 
   return (
     <div className="flex flex-col items-center gap-2">
-      <Button label="Sample 1" onClick={handleClick(0)} />
-      <Button label="Sample 2" onClick={handleClick(1)} />
+      {SAMPLES.map((x, i) => (
+        <Button key={i} label={x} onClick={handleClick(i)} />
+      ))}
     </div>
   );
 }

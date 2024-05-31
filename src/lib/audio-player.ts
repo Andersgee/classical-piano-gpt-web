@@ -1,10 +1,6 @@
+import { SAMPLES } from "./SAMPLES";
 import { uint8ArrayFromBase64url } from "./base64url";
 import { Tokenizer } from "./tokenizer";
-
-const SAMPLES = [
-  "/sequences_tokenized/chpn-p10_format0-tokenized.b64url",
-  "/sequences_tokenized/chpn-p7_format0-tokenized.b64url",
-];
 
 const tokenizer = new Tokenizer();
 
