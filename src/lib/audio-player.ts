@@ -51,6 +51,9 @@ export class AudioPlayer {
         this.playnote(note, 0.5);
       }
       this.step += 1;
+      if (this.step > this.sequences[idx].length) {
+        this.stop();
+      }
     }, 1000 / STEPS_PER_SECOND);
     setIsPlayingIdx(idx);
   }

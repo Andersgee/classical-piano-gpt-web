@@ -47,7 +47,7 @@ export default function Home() {
             but with some improvements over the years.
           </p>
           <p>
-            Anyway, this is what chat-GPT uses, and its open-source so anyone
+            Anyway, this is what chat-GPT uses, and it is open source so anyone
             can look at the code. So I did that: adapted it to my use case,
             trained a model and generated some samples.
           </p>
