@@ -13,6 +13,7 @@ export const SAMPLES = [
   "/generated-at-iter-42000",
   "/generated-at-iter-41000",
   "/generated-at-iter-40000",
+  /*
   "/generated-at-iter-39000",
   "/generated-at-iter-38000",
   "/generated-at-iter-37000",
@@ -42,4 +43,5 @@ export const SAMPLES = [
   "/generated-at-iter-13000",
   "/generated-at-iter-12000",
   "/generated-at-iter-11000",
+  */
 ];

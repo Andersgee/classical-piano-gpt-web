@@ -31,13 +31,13 @@ export function Samples() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-2">
+    <div className="flex flex-wrap justify-center gap-4 max-w-xl my-6">
       {SAMPLES.map((str, i) => (
         <button
           key={i}
           onClick={handleClick(i)}
           className={cn(
-            "flex justify-center w-36 rounded-sm shadow-md items-center px-3 py-2 transition-colors ease-in font-semibold",
+            "flex justify-center w-[150px] rounded-sm shadow-md items-center px-3 py-2 transition-colors ease-in font-semibold",
             isPlayingIdx === i
               ? "bg-green-500 hover:bg-green-600 text-green-50"
               : "bg-blue-500 hover:bg-blue-600 text-blue-50"
