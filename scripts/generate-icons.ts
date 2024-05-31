@@ -26,9 +26,13 @@ export async function writeText(path: string, data: string) {
   return await fs.writeFile(path, data);
 }
 
-type RegularIcon = { maskable: false; size: number; path: string };
+type RegularIcon = {
+  type: "normal";
+  size: number;
+  path: string;
+};
 type MaskableIcon = {
-  maskable: true;
+  type: "maskable" | "og";
   size: number;
   path: string;
   paddingFraction: number;
@@ -38,26 +42,33 @@ type Icon = RegularIcon | MaskableIcon;
 
 const PNG_ICONS: Icon[] = [
   {
-    maskable: false,
+    type: "normal",
     size: 192,
     path: "public/icons/icon-192.png",
   },
   {
-    maskable: false,
+    type: "normal",
     size: 512,
     path: "public/icons/icon-512.png",
   },
   {
-    maskable: true,
+    type: "maskable",
     size: 512,
     path: "public/icons/icon-512-maskable.png",
     paddingBackground: "#FFFFFF",
     paddingFraction: 0.1,
   },
   {
-    maskable: true,
+    type: "maskable",
     size: 180,
     path: "src/app/apple-icon.png",
+    paddingBackground: "#FFFFFF",
+    paddingFraction: 0.1,
+  },
+  {
+    type: "og",
+    size: 1080, //height
+    path: "src/app/opengraph-image.png",
     paddingBackground: "#FFFFFF",
     paddingFraction: 0.1,
   },
@@ -87,9 +98,9 @@ async function main() {
 }
 
 async function optimizeAndSavePng(path: string, icon: Icon) {
-  if (!icon.maskable) {
+  if (icon.type === "normal") {
     await sharp(path).resize(icon.size).png().toFile(icon.path);
-  } else {
+  } else if (icon.type === "maskable") {
     const pad = Math.ceil(icon.size * icon.paddingFraction);
     await sharp(path)
       .resize(icon.size - pad * 2)
@@ -100,6 +111,22 @@ async function optimizeAndSavePng(path: string, icon: Icon) {
         right: pad,
         bottom: pad,
         left: pad,
+      })
+      .png()
+      .toFile(icon.path);
+  } else if (icon.type === "og") {
+    const h = icon.size;
+    const w = (h * 16) / 9;
+    const padX = (w - h) / 2;
+    await sharp(path)
+      .resize(1080)
+      .flatten({ background: icon.paddingBackground })
+      .extend({
+        background: icon.paddingBackground,
+        //top: pad,
+        right: padX,
+        //bottom: pad,
+        left: padX,
       })
       .png()
       .toFile(icon.path);
