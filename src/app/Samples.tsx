@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { AudioPlayer } from "#src/lib/audio-player";
 import { SAMPLES } from "#src/lib/SAMPLES";
 import { cn } from "#src/utils/cn";
@@ -18,15 +18,17 @@ export function Samples() {
   }
 
   const isPlayingIdx = usePlayerStore((s) => s.isPlayingIdx);
+  const isReady = usePlayerStore((s) => s.isReady);
 
-  const handleClick = (sample: number) => async () => {
-    if (!getAudioPlayer().ready) {
-      await getAudioPlayer().init();
-    }
-    if (isPlayingIdx === sample) {
+  useEffect(() => {
+    void getAudioPlayer().init();
+  }, []);
+
+  const handleClick = (idx: number) => async () => {
+    if (isPlayingIdx === idx) {
       getAudioPlayer().stop();
     } else {
-      getAudioPlayer().play(sample);
+      getAudioPlayer().play(idx);
     }
   };
 
@@ -34,10 +36,11 @@ export function Samples() {
     <div className="flex flex-wrap justify-center gap-4 max-w-xl my-6">
       {SAMPLES.map((str, i) => (
         <button
+          disabled={!isReady}
           key={i}
           onClick={handleClick(i)}
           className={cn(
-            "flex justify-center w-[150px] rounded-sm shadow-md items-center px-3 py-2 transition-colors ease-in font-semibold",
+            "disabled:bg-red-500 flex justify-center w-[150px] rounded-sm shadow-md items-center px-3 py-2 transition-colors ease-in font-semibold",
             isPlayingIdx === i
               ? "bg-green-500 hover:bg-green-600 text-green-50"
               : "bg-blue-500 hover:bg-blue-600 text-blue-50"

@@ -1,4 +1,4 @@
-import { setIsPlayingIdx } from "#src/store/player";
+import { setIsPlayingIdx, setIsReady } from "#src/store/player";
 import { SAMPLES } from "./SAMPLES";
 import { uint8ArrayFromBase64url } from "./base64url";
 import { uint8ArrayFromTxt } from "./text";
@@ -31,6 +31,7 @@ export class AudioPlayer {
     );
     this.notes = await Promise.all(promises);
     this.ready = true;
+    setIsReady(true);
   }
 
   async play(idx: number) {

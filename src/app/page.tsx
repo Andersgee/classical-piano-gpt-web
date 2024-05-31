@@ -59,9 +59,9 @@ export default function Home() {
             >
               Web Audio Api
             </a>{" "}
-            to play the generated samples. The samples are incredibly
-            lightweight in size. They are fetched, unpacked and then played on
-            each button click.
+            to play those samples. The generated music is incredibly lightweight
+            in size: Around 0.001 MB per minute of music. They are fetched,
+            unpacked and then played on each button click.
           </p>
           <p>
             You can find some of my other project at{" "}
