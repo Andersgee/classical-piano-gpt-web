@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  body {
+    @apply font-sans text-neutral-950;
+  }
+
   p {
-    @apply my-2 max-w-[55ch] font-sans text-neutral-800;
+    @apply my-2 max-w-[55ch] text-neutral-800;
   }
 
   p > a {

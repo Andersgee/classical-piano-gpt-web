@@ -38,9 +38,7 @@ export class AudioPlayer {
     this.stop();
     if (!this.sequences[idx]) {
       //const v = await fetchsequence_txt(`/generated3/${SAMPLES[idx]}.txt`);
-      const v = await fetchsequence_b64(
-        `/generated_tokenized/${SAMPLES[idx]}.b64url`
-      );
+      const v = await fetchsequence_b64(`/generated/${SAMPLES[idx]}.b64url`);
       this.sequences[idx] = tokenizer.decode(v);
     }
 
@@ -86,8 +84,6 @@ async function fetchnote(n: number) {
   const path = `/notes/n${n + 1}.mp3`;
   const res = await fetch(path);
   const buf = await res.arrayBuffer();
-  //const audioBuffer = await this.audio.decodeAudioData(buf);
-  //return audioBuffer;
   return buf;
 }
 
