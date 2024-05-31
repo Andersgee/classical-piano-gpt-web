@@ -27,6 +27,26 @@ export function uint8ArrayFromBase64url(str: string) {
   return out;
 }
 
+export function base64urlFromUint8Array(data: Uint8Array): string {
+  let out = "";
+  let bits = 0;
+  let buffer = 0;
+  const mask = (1 << ENCODING.bits) - 1; //63
+  for (const value of data) {
+    buffer = (buffer << 8) | (0xff & value);
+    bits += 8;
+    while (bits > ENCODING.bits) {
+      bits -= ENCODING.bits;
+      out += ENCODING.chars[mask & (buffer >> bits)];
+    }
+  }
+
+  if (bits) {
+    out += ENCODING.chars[mask & (buffer << (ENCODING.bits - bits))];
+  }
+  return out;
+}
+
 const ENCODING: { chars: string; bits: number; codes: Record<string, number> } =
   {
     chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_",
