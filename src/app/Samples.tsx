@@ -37,14 +37,14 @@ export function Samples() {
           key={i}
           onClick={handleClick(i)}
           className={cn(
-            "flex items-center px-3 py-2 transition-colors ease-in font-semibold",
+            "flex justify-center w-36 rounded-sm shadow-md items-center px-3 py-2 transition-colors ease-in font-semibold",
             isPlayingIdx === i
               ? "bg-green-500 hover:bg-green-600 text-green-50"
-              : "bg-purple-500 hover:bg-purple-600 text-purple-50"
+              : "bg-blue-500 hover:bg-blue-600 text-blue-50"
           )}
         >
           {isPlayingIdx === i ? <IconPause /> : <IconPlay />}
-          <span className="ml-2">{str}</span>
+          <span className="ml-2">{`sample ${i + 1}`}</span>
         </button>
       ))}
     </div>
